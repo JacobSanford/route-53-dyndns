@@ -12,5 +12,6 @@ export AWS_SECRET_ACCESS_KEY="<Insert your AWS Secret Key>"
 
 ## Dependencies :
 
++   A URL that returns the client IP alone in plaintext. No support is included for other standard services.
 +   Area53 interface : https://github.com/mariusv/Area53.git
 +   boto : https://github.com/boto/boto
