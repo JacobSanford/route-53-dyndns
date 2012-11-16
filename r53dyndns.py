@@ -1,5 +1,5 @@
 #! /usr/bin/env python
-"""Updates an A alias record with the current ip of this system.
+"""Updates a Route53 hosted A alias record with the current ip of the system.
 """
 from area53 import route53
 import logging
