@@ -1,6 +1,6 @@
-# Amazion Route53 Dynamic DNS Updater
+# Amazon Route53 Dynamic DNS Updater
 
-This project leverages Route53 API to provide a dynamic DNS service via Route53 hosted domain A (alias) records.
+This project leverages the Amazon Route53 API to provide a dynamic DNS service through A (alias/subdomain) records.
 
 ## Setup
 As indicated by the Area53 documentation, users need to set the following environment variables:
