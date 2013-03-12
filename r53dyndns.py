@@ -38,7 +38,6 @@ if options.verbose :
 current_ip=urlopen(options.ip_get_url).read().strip()
 record_to_update=options.record_to_update
 zone_to_update='.'.join(record_to_update.split('.')[-2:])
-delete_required=False
 
 try:
     socket.inet_aton(current_ip)
@@ -48,7 +47,6 @@ try:
             if current_ip in record.to_print() :
                 logging.info('Record IP matches, doing nothing.')
                 sys.exit()
-            delete_required=True
             logging.info('IP does not match, update needed.')
             zone.delete_a(record_to_update)
             zone.add_a(record_to_update, current_ip)
