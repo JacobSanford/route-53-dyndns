@@ -18,5 +18,5 @@ before a connection can be made.
 ## Dependencies :
 
 +   A URL that returns the client IP alone in plaintext. No support is included for other standard services.
-+   Area53 interface : https://github.com/mariusv/Area53.git
++   Area53 interface : https://github.com/bigmlcom/Area53
 +   boto : https://github.com/boto/boto
