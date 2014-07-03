@@ -1,5 +1,5 @@
 # Amazon Route53 Dynamic DNS Tool
-### Use Amazon Route53 As a Dynamic DNS Service
+### Leverage Amazon Route53 As a Dynamic DNS Service
 
 This project leverages the Amazon Route53 API to provide a dynamic DNS service through A (alias/subdomain) records.
 
