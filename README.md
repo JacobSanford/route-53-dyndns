@@ -1,4 +1,5 @@
-# Amazon Route53 Dynamic DNS Updater
+# Amazon Route53 Dynamic DNS Tool
+### Use Amazon Route53 As a Dynamic DNS Service
 
 This project leverages the Amazon Route53 API to provide a dynamic DNS service through A (alias/subdomain) records.
 
@@ -9,14 +10,18 @@ As indicated by the Area53 documentation, users need to set the following enviro
 export AWS_ACCESS_KEY_ID="<Insert your AWS Access Key>"
 export AWS_SECRET_ACCESS_KEY="<Insert your AWS Secret Key>"
 ```
-
-before a connection can be made.
+before a authenticated connection can be made.
 
 ## Use
 ```r53dyndns.py --record=RECORD_TO_UPDATE --url=IP_GET_URL```
 
 ## Dependencies :
-
 +   A URL that returns the client IP alone in plaintext. No support is included for other standard services.
 +   Area53 interface : https://github.com/bigmlcom/Area53
 +   boto : https://github.com/boto/boto
+
+## License
+- Amazon Route53 Dynamic DNS Tool is licensed under the MIT License:
+  - http://opensource.org/licenses/mit-license.html
+- Attribution is not required, but much appreciated:
+  - `Amazon Route53 Dynamic DNS Tool by Jacob Sanford`
