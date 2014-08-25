@@ -4,6 +4,7 @@
 from area53 import route53
 import logging
 from optparse import OptionParser
+import re
 from re import search
 import socket
 import sys
@@ -35,7 +36,12 @@ if options.verbose :
                         level=logging.INFO,
                         )
 
-current_ip=urlopen(options.ip_get_url).read().strip()
+content=urlopen(options.ip_get_url).read().strip()
+ip_list=re.findall( r'[0-9]+(?:\.[0-9]+){3}',content)
+if len(ip_list) < 1:
+    logging.error("Unable to find an IP address from within the URL:  %s" % options.ip_get_url)
+    sys.exit(-1)
+current_ip=ip_list[0]
 record_to_update=options.record_to_update
 zone_to_update='.'.join(record_to_update.split('.')[-2:])
 
