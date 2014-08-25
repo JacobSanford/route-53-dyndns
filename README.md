@@ -10,7 +10,7 @@ As indicated by the Area53 documentation, users need to set the following enviro
 export AWS_ACCESS_KEY_ID="<Insert your AWS Access Key>"
 export AWS_SECRET_ACCESS_KEY="<Insert your AWS Secret Key>"
 ```
-before a authenticated connection can be made.
+before an authenticated connection can be made.
 
 ## Use
 ```r53dyndns.py --record=RECORD_TO_UPDATE --url=IP_GET_URL```
