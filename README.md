@@ -16,7 +16,7 @@ before an authenticated connection can be made.
 ```r53dyndns.py --record=RECORD_TO_UPDATE --url=IP_GET_URL```
 
 ## Dependencies :
-+   A URL that returns the client IP alone in plaintext. No support is included for other standard services.
++   A URL that returns the client IP address. A regexp will extract the first IP address found on the page.
 +   Area53 interface : https://github.com/bigmlcom/Area53
 +   boto : https://github.com/boto/boto
 
