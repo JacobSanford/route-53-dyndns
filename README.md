@@ -14,9 +14,6 @@ before an authenticated connection can be made.
 
 ## Use
 
-### Direct Call
-```r53dyndns.py --record=RECORD_TO_UPDATE --url=IP_GET_URL```
-
 ### Suggested Installation
 Clone script to */var/opt*:
 ```
@@ -46,6 +43,10 @@ Run script directly to test:
 ```
 /etc/cron.hourly/updateDynDNS
 ```
+
+### Direct Call
+```r53dyndns.py --record=RECORD_TO_UPDATE --url=IP_GET_URL```
+
 
 ## Dependencies :
 +   A URL that returns the client IP address. A regexp will extract the first IP address found on the page.
