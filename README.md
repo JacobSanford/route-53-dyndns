@@ -26,7 +26,7 @@ git clone git://github.com/JacobSanford/route-53-dyndns.git
 
 Install dependencies:
 ```
-pip install Area53
+pip install git+https://github.com/vrypan/Area53
 ```
 
 Create a script : */etc/cron.hourly/updateDynDNS*:
