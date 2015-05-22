@@ -13,7 +13,39 @@ export AWS_SECRET_ACCESS_KEY="<Insert your AWS Secret Key>"
 before an authenticated connection can be made.
 
 ## Use
+
+### Direct Call
 ```r53dyndns.py --record=RECORD_TO_UPDATE --url=IP_GET_URL```
+
+### Suggested Installation
+Clone script to */var/opt*:
+```
+cd /var/opt
+git clone git://github.com/JacobSanford/route-53-dyndns.git
+```
+
+Install dependencies:
+```
+pip install Area53
+```
+
+Create a script : */etc/cron.hourly/updateDynDNS*:
+```
+#!/usr/bin/env bash
+export AWS_ACCESS_KEY_ID=""
+export AWS_SECRET_ACCESS_KEY=""
+/var/opt/route-53-dyndns/r53dyndns.py -U http://www.whatismyip.com/ -R example.domain.com
+```
+
+Make script executable: 
+```
+chmod +x /etc/cron.hourly/updateDynDNS
+```
+
+Run script directly to test: 
+```
+/etc/cron.hourly/updateDynDNS
+```
 
 ## Dependencies :
 +   A URL that returns the client IP address. A regexp will extract the first IP address found on the page.
