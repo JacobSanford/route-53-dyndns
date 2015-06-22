@@ -1,8 +1,9 @@
 #! /usr/bin/env python
 """Updates a Route53 hosted A alias record with the current ip of the system.
 """
-from area53 import route53
+import boto.route53
 import logging
+import os
 from optparse import OptionParser
 import re
 from re import search
@@ -47,7 +48,8 @@ zone_to_update = '.'.join(record_to_update.split('.')[-2:])
 
 try:
     socket.inet_aton(current_ip)
-    zone = route53.get_zone(zone_to_update)
+    conn = boto.route53.connect_to_region(os.getenv('AWS_CONNECTION_REGION', 'us-east-1'))
+    zone = conn.get_zone(zone_to_update)
     for record in zone.get_records():
         if search(r'<Record:' + record_to_update, str(record)):
             if current_ip in record.to_print():

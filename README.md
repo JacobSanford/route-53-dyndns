@@ -4,7 +4,7 @@
 This project leverages the Amazon Route53 API to provide a dynamic DNS service through A (alias/subdomain) records.
 
 ## Setup
-As indicated by the Area53 documentation, users need to set the following environment variables:
+As indicated by the Boto documentation, users need to set the following environment variables:
 
 ```bash
 export AWS_ACCESS_KEY_ID="<Insert your AWS Access Key>"
@@ -23,7 +23,7 @@ git clone git://github.com/JacobSanford/route-53-dyndns.git
 
 Install dependencies:
 ```
-pip install git+https://github.com/vrypan/Area53
+pip install boto
 ```
 
 Create a script : */etc/cron.hourly/updateDynDNS*:
@@ -50,7 +50,6 @@ Run script directly to test:
 
 ## Dependencies :
 +   A URL that returns the client IP address. A regexp will extract the first IP address found on the page.
-+   Area53 interface : https://github.com/bigmlcom/Area53
 +   boto : https://github.com/boto/boto
 
 ## License
