@@ -6,6 +6,10 @@ Dependencies
 -----------
 - [boto](https://github.com/boto/boto)
 
+Docker
+-----------
+A [docker image](https://registry.hub.docker.com/u/jacobsanford/route53-dyndns/) has been created to deploy this service quickly.
+
 QuickStart
 -----------
 1. Clone this repository
