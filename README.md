@@ -8,7 +8,7 @@ Dependencies
 
 Docker
 -----------
-A [docker image](https://registry.hub.docker.com/u/jacobsanford/route53-dyndns/) has been created to deploy this service quickly.
+Familiar with Docker? A [docker image](https://registry.hub.docker.com/u/jacobsanford/route53-dyndns/) was created to deploy this service extremely quickly.
 
 QuickStart
 -----------
