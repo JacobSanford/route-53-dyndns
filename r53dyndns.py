@@ -12,7 +12,7 @@ import sys
 from urllib2 import urlopen
 
 __author__ = "Jacob Sanford"
-__license__ = "GPL"
+__license__ = "MIT"
 __version__ = "1.0.0"
 __maintainer__ = "Jacob Sanford"
 __email__ = "jacob.josh.sanford@gmail.com"
