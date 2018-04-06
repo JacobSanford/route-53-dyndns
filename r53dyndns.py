@@ -38,7 +38,7 @@ if options.verbose:
     )
 
 content = urlopen(options.ip_get_url).read().strip()
-ip_list = re.findall(r'[0-9]+(?:\.[0-9]+){3}', content)
+ip_list = re.findall(r'\W([0-9]+(?:\.[0-9]+){3})', content)
 if len(ip_list) < 1:
     logging.error("Unable to find an IP address from within the URL:  %s" % options.ip_get_url)
     sys.exit(-1)
