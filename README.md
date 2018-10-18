@@ -26,6 +26,10 @@ QuickStart
         export AWS_ACCESS_KEY_ID="<Insert your AWS Access Key>"
         export AWS_SECRET_ACCESS_KEY="<Insert your AWS Secret Key>"
         export AWS_CONNECTION_REGION="us-east-1"
+        _optional_
+        export ROUTE53_ZONE="<Insert zone name>"
+
+If ROUTE53_ZONE is not defined, base domain (TLD + 1) is used.
 
 4. Run the script
 
