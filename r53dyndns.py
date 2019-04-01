@@ -9,7 +9,7 @@ import re
 from re import search
 import socket
 import sys
-from urllib2 import urlopen
+import urllib2
 
 __author__ = "Jacob Sanford"
 __license__ = "MIT"
@@ -36,15 +36,29 @@ if options.verbose:
     logging.basicConfig(
         level=logging.INFO,
     )
+hdr = {'User-Agent': 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.64 Safari/537.11',
+       'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+       'Accept-Charset': 'ISO-8859-1,utf-8;q=0.7,*;q=0.3',
+       'Accept-Encoding': 'none',
+       'Accept-Language': 'en-US,en;q=0.8',
+       'Connection': 'keep-alive'}
+req = urllib2.Request(options.ip_get_url, headers=hdr)
+try:
+    page = urllib2.urlopen(req)
+except urllib2.HTTPError, e:
+    logging.error("Could not retrieve content from url")
 
-content = urlopen(options.ip_get_url).read().strip()
+content = page.read()
 ip_list = re.findall(r'\W([0-9]+(?:\.[0-9]+){3})', content)
 if len(ip_list) < 1:
     logging.error("Unable to find an IP address from within the URL:  %s" % options.ip_get_url)
     sys.exit(-1)
 current_ip = ip_list[0]
 record_to_update = options.record_to_update
-zone_to_update = '.'.join(record_to_update.split('.')[-2:])
+
+zone_to_update = os.getenv("ROUTE53_ZONE")
+if zone_to_update == None:
+  zone_to_update = '.'.join(record_to_update.split('.')[-2:])
 
 try:
     socket.inet_aton(current_ip)
