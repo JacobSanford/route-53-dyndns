@@ -44,7 +44,10 @@ if len(ip_list) < 1:
     sys.exit(-1)
 current_ip = ip_list[0]
 record_to_update = options.record_to_update
-zone_to_update = '.'.join(record_to_update.split('.')[-2:])
+
+zone_to_update = os.getenv("ROUTE53_ZONE")
+if zone_to_update == None:
+  zone_to_update = '.'.join(record_to_update.split('.')[-2:])
 
 try:
     socket.inet_aton(current_ip)
