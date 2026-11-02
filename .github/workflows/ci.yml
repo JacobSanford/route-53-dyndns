@@ -1,0 +1,36 @@
+name: Test and Build
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  tests:
+    name: Tests (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+      - run: pip install -r requirements-dev.txt
+      - run: pytest -v
+
+  build-push-images:
+    name: Build and Push Image
+    needs: [tests]
+    if: github.event_name != 'pull_request' || github.event.pull_request.head.repo.full_name == github.repository
+    permissions:
+      contents: read
+      packages: write
+    uses: unb-libraries/github-workflows/.github/workflows/build-push.yaml@1.x
+    with:
+      image-name: 'ghcr.io/jacobsanford/route53-dyndns'
+    secrets:
+      GH_CONTAINER_REGISTRY_USER: ${{ github.actor }}
+      GH_CONTAINER_REGISTRY_TOKEN: ${{ secrets.GITHUB_TOKEN }}

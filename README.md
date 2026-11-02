@@ -9,8 +9,29 @@ Dependencies
 
 Docker
 -----------
-Familiar with Docker? A [docker image](https://hub.docker.com/r/jacobsanford/route53-dyndns) was created to deploy this service extremely quickly.
-Note that the published image predates 2.x and runs the older Python 2 version of this tool.
+An image is published to `ghcr.io/jacobsanford/route53-dyndns` for linux/amd64 and linux/arm64. It updates the
+record on start, then every `ROUTE53_UPDATE_FREQUENCY` seconds.
+
+    docker run -d --restart unless-stopped \
+        --name route53-dyndns \
+        -e AWS_ACCESS_KEY_ID="<Insert your AWS Access Key>" \
+        -e AWS_SECRET_ACCESS_KEY="<Insert your AWS Secret Key>" \
+        -e ROUTE53_DOMAIN_A_RECORD=home.example.com \
+        ghcr.io/jacobsanford/route53-dyndns:2.x
+
+| Variable | Description |
+|---|---|
+| `ROUTE53_DOMAIN_A_RECORD` | The A record to update. Required. |
+| `ROUTE53_IP_URL` | URL that returns the current IP. Default `https://checkip.amazonaws.com`. |
+| `ROUTE53_UPDATE_FREQUENCY` | Seconds between updates. Default `10800`. Set `0` to run once and exit with the script's status. |
+| `ROUTE53_TTL` | Passed as `--ttl`. Optional. |
+| `ROUTE53_DRY_RUN` | Set `1` to pass `--dry-run`. Optional. |
+| `ROUTE53_ZONE`, `ROUTE53_ZONE_ID` | See [Environment variables](#environment-variables). Optional. |
+
+Each push to the `2.x` branch is also published with an immutable `<short-sha>-<timestamp>` tag.
+
+The `jacobsanford/route53-dyndns` image on Docker Hub is deprecated. It runs the Python 2 version of this tool and is
+no longer updated.
 
 QuickStart
 -----------
