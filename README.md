@@ -4,7 +4,8 @@ Provide a simple dynamic DNS creation and update service via Amazon Route53 and 
 
 Dependencies
 -----------
-- [boto](https://github.com/boto/boto)
+- Python 3.8+
+- [boto3](https://github.com/boto/boto3)
 
 Docker
 -----------
@@ -14,12 +15,13 @@ QuickStart
 -----------
 1. Clone this repository
 
-        git clone git://github.com/JacobSanford/route-53-dyndns.git
+        git clone https://github.com/JacobSanford/route-53-dyndns.git
         cd route-53-dyndns
 
-2. Install dependencies ([virtualenv](http://virtualenv.readthedocs.org/en/latest/) is recommended.)
+2. Install dependencies into a virtual environment
 
-        pip install -r requirements.txt
+        python3 -m venv venv
+        venv/bin/pip install -r requirements.txt
 
 3. Export environment variables
    ```
@@ -32,7 +34,9 @@ QuickStart
 
 4. Run the script
 
-        ./r53dyndns.py -U http://www.whatismyip.com/ -R example.domain.com
+        venv/bin/python r53dyndns.py -U https://checkip.amazonaws.com -R example.domain.com
+
+   Add `-v` for verbose output. The script exits non-zero if it cannot determine the IP or find the hosted zone.
 
 
 Running as a 'Service'
@@ -48,9 +52,9 @@ system.
         export AWS_ACCESS_KEY_ID=""
         export AWS_SECRET_ACCESS_KEY=""
         export AWS_CONNECTION_REGION="us-east-1"
-        /var/opt/route-53-dyndns/r53dyndns.py -U http://www.whatismyip.com/ -R example.domain.com
+        /var/opt/route-53-dyndns/venv/bin/python /var/opt/route-53-dyndns/r53dyndns.py -U https://checkip.amazonaws.com -R example.domain.com
 
-2. Create a calling script
+2. Make the script executable
 
         chmod +x /etc/cron.hourly/updateDynDNS
 
