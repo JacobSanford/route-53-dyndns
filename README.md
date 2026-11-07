@@ -12,12 +12,29 @@ Docker
 An image is published to `ghcr.io/jacobsanford/route53-dyndns` for linux/amd64 and linux/arm64. It updates the
 record on start, then every `ROUTE53_UPDATE_FREQUENCY` seconds.
 
-    docker run -d --restart unless-stopped \
-        --name route53-dyndns \
-        -e AWS_ACCESS_KEY_ID="<Insert your AWS Access Key>" \
-        -e AWS_SECRET_ACCESS_KEY="<Insert your AWS Secret Key>" \
-        -e ROUTE53_DOMAIN_A_RECORD=home.example.com \
-        ghcr.io/jacobsanford/route53-dyndns:2.x
+1. Download [`compose.yaml`](compose.yaml) into a new directory, then set `ROUTE53_DOMAIN_A_RECORD` in it:
+
+    ```sh
+    mkdir route53-dyndns && cd route53-dyndns
+    curl -fsSLO https://raw.githubusercontent.com/JacobSanford/route-53-dyndns/2.x/compose.yaml
+    ```
+
+2. Put the credentials in a `.env` file beside it, readable only by you. Compose reads it automatically:
+
+    ```sh
+    cat > .env <<'EOF'
+    AWS_ACCESS_KEY_ID=<Insert your AWS Access Key>
+    AWS_SECRET_ACCESS_KEY=<Insert your AWS Secret Key>
+    EOF
+    chmod 600 .env
+    ```
+
+3. Start it and check the first update:
+
+    ```sh
+    docker compose up -d
+    docker compose logs -f
+    ```
 
 | Variable | Description |
 |---|---|
