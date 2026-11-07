@@ -1,5 +1,5 @@
 # Set ROUTE53_DOMAIN_A_RECORD below, and put the AWS keys in a .env file beside this one.
-# See the Docker section of README.md for the other variables.
+# See README.md for the other variables.
 services:
   route53-dyndns:
     image: ghcr.io/jacobsanford/route53-dyndns:2.x
