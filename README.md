@@ -1,6 +1,6 @@
 # Amazon Route 53 dynamic DNS
 
-Keeps one A record in Amazon Route 53 pointed at the host's current public IP.
+A simple dynamic DNS creation and update service via Amazon Route53 and A (alias/subdomain) records.
 
 ## Before you start
 
